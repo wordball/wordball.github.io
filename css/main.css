@@ -1,0 +1,33 @@
+a {
+    text-decoration-line: none;
+    color: blue;
+}
+
+body {
+    color: black;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+
+.divider{
+    width:5px;
+    height:auto;
+    display:inline-block;
+}
+
+h1 {
+    color: black;
+    text-align: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+image {
+    width: 50%;
+    /* margin: 1px auto; */
+    display: block;
+}
+
+
+.sections {
+
+}

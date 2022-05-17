@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta charset="UTF-8">
+        
+        <!-- title -->
+        <title> MRI & Its Associated Concepts </title>
+        <style>
+            img {
+                margin: auto;
+                display: block;
+            }
+         </style>
+    </head>
+
+    <body> 
+        <h2> What does MRI try to do? </h2>
+
+        <h2> How does MRI work? </h2>
+
+            <h3> Fast Fourier Transform </h3>
+                <h4> What does Fourier Transform do? </h4>
+                <p> Fourier Transform takes a signal and decomposes it into sine/cosine waves of varying frequencies/wavelengths. </p>
+                <h4> How does Fourier Transform know what sine and cosine waves to decompose into? </h4>
+                <p> Forget the math for a second. Here's the intuition. Let's say you have a wave called f(t) where t represents time. Plot the wave on an xy graph where x is time and y is the height of the wave. Ensure that the trough of the wave hits 0(in other words, you might need to shift the wave upwards/downwards in order to make this happen). Now, take this wave and place it on a polar graph, making a graph g(&theta). Maintain both the amplitude and vertical shift but play around with the coefficients of theta. As you play around with the coefficients of theta, determine the center of mass of the structure(assume the density = 1) by setting up a double integral with respect to theta and r. You will see that the distance of the center of mass from the origin is maximized when polar curve g(&theta;) = R*cos(&theta; <sup>&omega;</sup> &frasl; <sub>2*&pi;</sub>) ) + &phi; where &phi; represents the vertical shift. In other words, when the cycles/second equals the beats/second. 
+                <h4> What does FFT do? </h4>
+                <h4> How does FFT work? </h4>
+                Takes a signal and decomposes it into sine waves and cosine waves of varying frequencies/wavelengths
+
+        <h2> Sources </h2>
+            <ol> 
+                <li> <a link = https://www.youtube.com/watch?v=spUNpyF58BY> Grant Sanderson Video on Fourier Transform ></a> </li> 
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                <!-- <li> <a link = > </a></li> -->
+                
+
+            </ol>
+    </body>
+</html>

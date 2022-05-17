@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- meta -->
+        <meta charset="UTF-8">
+        
+        <!-- title -->
+        <title> My Research </title>
+        <style>
+            img {
+                margin: auto;
+                display: block;
+            }
+         </style>
+    </head>
+
+    <body> 
+        <h1>
+            From NLP to Transformers and Vice Versa
+        </h1>
+
+        <h2>
+            Outline
+        </h2>
+        <p>
+            <ol>
+                <li> Terminology </li>
+                <li> History of Language Models </li>
+                <li> Current RNNs & their Fixings </li>
+                <li> Transformers for NLP </li>
+                <li> Transformers for Images </li>
+            </ol>
+        </p>
+
+        <h2> Terminology </h2>
+        <ol>
+            <li> Natural Language Processing(NLP): Having machines take written/spoken language as input, understand it, process it, and then transforming it to an output space. Examples include translation from written English to verbal French, determining the best response, autocorrect, smart assistants, etc.) </li>
+            <li> Transduction:Transformation of input sequences to output sequences <sup> 1</sup> </li> 
+            <li> Self-attention: defined in the "Attention is All You Need" publication as "attention mechanism relating different positions of a single sequence in order to compute a representation of the sequence"</li>
+            <li> Attention function: f(query, Set of key:value pairs) = Output </li>
+            <li> Sequence-Aligned Recurrence: </li>
+            <li> Recurrent Attention Mechanism</li>
+            <li> Learned vector representation </li>
+            <li> Residual Connection: Connection that factors in Prior Input into Existing Calculations. Due to the inherent nature of gradient descent, having a residual connection allows the gradients to course through a particular input more directly without a bunch of coefficients in the way.  </li>
+            <li> Normalization: Standardizes </li>
+            <li> Autoregressive: Predicts future values by relying on past values </li>
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            <!-- <li> </li> -->
+            
+
+        </ol>
+        <h2>
+            History into RNNs
+        </h2>
+        <p>
+            There doesn't appear to be a particular date when RNNs first arrived.
+        </p>
+        
+        <h2> Transformers for NLP: Attention is All You Need </h2>
+        <p> The authors of this paper include the following: 
+            <ol>
+                <li> Ashish Vaswani </li> 
+                <li> Noam Shazeer </li>
+                <li> Niki Parmar </li>
+                <li> Jakob Uszkoreit </li>
+                <li> Llion Jones </li>
+                <li> Aidan N. Gomez </li>
+                <li> Łukasz Kaiser </li>
+                <li> Illia Polosukhin </li>
+            </ol>
+            <br>
+            <br>
+        </p>
+        
+        <h3> Why do Transformers Matter? </h3>
+        In a nutshell, here are the advantages that transformers provide:
+        <ol>
+            <li> Does not use convolutions or recurrence - Saves on computational resources </li>
+            <li> Self-Attention Mechanism: Comparisons of outputs/inputs that are found at large distances from one another in the sequence has a constant time cost as opposed to a logarithmic or linear cost. As Michael Phi(the AI Hacker) puts it, transformers have a practically "infinite reference window".  This is crucial because previous models of language learning had short-term memory deficits due to a lack of a global attention mechanism. In other words, as an input sequence got longer, the attention given to words in the beginning became so small that the information from those words could no longer be used. There were alterations made(hence LSTMs and GRUs) but those too have their limitations. </li>
+            <li> Training: Backpropagation occurs for each word that is produced by the transformer. This is unlike an RNN where an entire sentence would have to be produced before backprop occurs. This is </li>
+        </ol>
+
+        Here are the disadvantages that transformers have and whether they are mitigated by another aspect of the transformer architecture.
+
+        <ol>
+
+        </ol>
+        <h3> How do Transformers Work? </h3>
+        <figure> 
+            <img src = "../images/transformer_model_architecture.PNG" alt = "Transformer Model Architecture(taken from 'Attention is All You Need'"> 
+            <br>
+            <figcaption>
+                <center>
+                    <b> Figure 1: </b>Transformer Model Architecture(taken from "Attention is All You Need")
+                </center> </figcaption> 
+        </figure>
+
+        Parts of a Transformer:
+        <ol>
+            <li> Input embedding: Takes Word as Input and uses a lookup table to generate a vector(learned-vector representation) </li>The
+            <li> Positional Encodings: Used to encode information about the position of the words. Uses cosine and sine for odd and even time steps, respectively. The peaks and troughs of waves with different frequencies appear to correlate to different words and their relative positions but I still don't fully understand this. </li>
+            <li> Encoder: f(Input sequence) -> Abstract continuous representation
+                <ol>
+                    <li>
+                        Multi-headed attention: Applies self-attention. Queries and Keys are multiplied together to create a score which determines which words are important. Don't forget that the query and key multiplication is essentially vectors(in the form of matrices) dot multiplying together. Dot multiplying remember looks at the angle between two vectors. These scores are scaled down by dividing by the square root of the number of queries and keys(d<sub>k</sub>) and then subsequently further elongated(as in the distance between scores increases) thanks to the softmax function. Afterwards, the value vector is multiplied to the intermediate result. The purpose is essentially like creating a hidden state vector.
+                        <figure> 
+                            <img src = "../images/multi_headed_attention.PNG" alt = "Multi-headed Attention(taken from 'Attention is All You Need'"> 
+                            <figcaption><b> Figure 2: </b>Multi-headed Attention(taken from "Attention is All You Need") </figcaption> 
+                        </figure>
+                    </li>
+                    <li> Residual connection + Normalization: Original input & output of multi-headed attention are added together and normalized. </li>
+                    <li> Pointwise Feed Forward Neural Network - Multiple layers with a ReLU activation function </li>
+                </ol>
+            </li>
+            <li> Decoder: Autoregressive 
+                <ol>
+                    <li>
+                        Multi-headed attention: Refer to description from Encoders. However, note that unlike in encoders, the first multi-headed attention mechanism in decoders use a principle known as masking. Like the word suggests, masking involves shielding some known elements while preserving others. When tabulating the scores for the words, it is not possible for a word at position x to know the word at position x + 1. When making predictions when the last known word is at position x, you only have access to words from positions 1 to x. Here is an example of what masking means in this context: 
+                    
+                    </li>
+                    <li> Linear Classifier: Number of classes depends on the number of words in the transformer's "dictionary" of potential words</li>
+                </ol>
+            </li>
+        </ol>
+        
+        <br>
+        <br>
+
+
+
+
+        <h2> Things to Do</h2>
+        <ol>
+            <li> Watch https://www.youtube.com/watch?v=4Bdc55j80l8(8:35 onwards), https://www.youtube.com/watch?v=TQQlZhbC5ps, https://www.youtube.com/watch?v=iDulhoQ2pro, https://www.youtube.com/watch?v=j6kuz_NqkG0 </li>
+        </ol>
+        <h2> Questions I Have Yet to Answer </h2>
+        <ol>
+            <li> Why do sine and cosine functions having linearity properties(I'm assuming linear transformation properties) matter? </li>
+            <li> What exactly are embeddings and what do they precisely do?(Examples include word2vec) </li>
+            <li> What is the intuition behind the purpose of the keys, values, and queries </li>
+        </ol>
+        <h2> Source Material/Useful Links </h2>
+        <ol>
+            <li> https://aicorespot.io/an-intro-to-transduction-within-machine-learning/</li>
+
+        </ol>
+    </body>
+</html>

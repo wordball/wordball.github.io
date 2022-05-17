@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            CS61A in Condensed Form
+        </title>
+    </head>
+    
+    <body>
+        <h1> Why Bother Making These Notes at All? </h1>
+
+        <p> CS61A is/was a pretty difficult class for many students especially if they lack prior experience in programming (e.g. myself). However, there are a lot of resources that explain these concepts which kind of begs the question as to why I would even create something like this. In addition, the way to do well in CS61A, like in any class, seems to be grinding practice exams and carefully noting your mistakes. In writing this, my goal isn't to give a comprehensive substitute textbook for CS61A; instead, I hope to provide more of an intuition into the concepts, examples of classic errors that may pop up, methods of approaching test problems, and ways of identifying patterns in them. </p>
+        <h1>
+            Scheme
+        </h1>
+
+        <h2>
+            Basics
+        </h2>
+
+        <p>
+            Recall from the Composing Programs Textbook that the essential elements that comprise any programming language are:
+            <ol>
+                <li> Primitive Expressions and Statements</li>
+                <li> Means of Combination </li>
+                <li> Means of Abstraction </li>
+            </ol>
+
+            Focusing on this first aspect, Scheme has the following four basic types of expressions: 
+            <ol>
+                <li> Values </li>
+                <li> Call Expressions(also known as procedure/function calls) </li>
+                <li> Special Forms Expressions(Unique Procedures of Scheme that operate under special rules) </li>
+                <li> Variables </li>
+            </ol>
+
+            UC Berkeley's CS61A website has a lot of introductory information that I won't go into. However, I do want to explain the intuition behind some difficult problems which demonstrate the various types of problems that you would see on a CS61A exam.
+
+            
+            
+        </p>
+
+        <h2>
+            Why does Scheme Matter?
+        </h2>
+
+        <p> In CS61A, a lot of people ask why Scheme is taught in the first place. Python is a much more powerful language that is more relevant than Scheme and can teach the same concepts. Personally, I believe Scheme's value lies in two key aspects: a) the ability to write interpreters for other languages(ex: Python), b) teach functional programming principles. Given the "Scheme project", the former is somewhat obvious but the latter is not emphasized as much. Scheme's syntax is relatively simple and revolves entirely around creating functions which execute and return output based on certain inputs. Scheme also emphasizes creating pure functions which do not have any side effects(e.g. the 'print' function in Python), allowing for easier debugging.</p>
+        <br> 
+        <p> However, by revolving entirely around functions, Scheme cannot embody object-oriented programming and consequently cannot create changes in state. This forces an almost-exclusively recursive approach to many problems, explaining why universities like MIT and UC Berkeley use it to teach introductory programming. </p>
+        </p>
+    
+        <h2> 
+            How to Solve Problems in CS61A
+        </h2>
+
+        <ol>
+            <li> Read the problem and the test cases. If the wording doesn't make sense, reread them and then look at the test cases. Hone in on the sentence(s) that you do not understand and try to use the test cases to understand what they mean. Do not proceed to the next step until you understand every part of the problem. </li>
+            <br>
+            <li> Identify the type of problem and the setting of the problem. </li> <br>
+            <p> To get an idea of what this means, take a look at the following example: </p>
+            <img src = "../images/61a_sp22_Q12.png" alt = "" width = 500 height = "500">
+            <br>
+            <img src = "../images/61a_sp22_Q12_2.png" alt = "" width = 500 height = "250">
+
+            <p> As you'll see, this problem takes place in the context of the Scheme language. As a result, to solve this problem, one needs to have an understanding of Scheme lists and their syntax(making Scheme lists the "setting" of the problem). However, the concept that the problem is trying to test is maintaining abstraction barriers. This distinction may seem obvious or perhaps unnecessary; however, knowing what concept a problem is testing is key to actually solving it. If a student sees the problem and recognizes it as a Scheme problem, then that's an issue because they were unable to recognize the actual concept that the instructor is trying to test them on. If they get this problem wrong, this might interfere with their understanding of what they need to work on. More importantly, this problem is an example that demonstrates that the concepts that are being taught in classes like CS61A span across different languages. Consequently, if one cannot recognize the concept in Scheme, it's possible that they will not recognize it in another context which they are unfamiliar with. </p>
+            <br>
+            <li> Use the code structure to your advantage. </li> 
+            <p> Names of variables are given for a reason. (Fewer) lines without a for loop can indicate using recursion instead of iteration. List comprehensions do not necessarily need to be assigned to a variable.</p>
+            <br>
+            <li> Fill out the lines you know and get as much credit as possible. - Obvious enough </li> <br>
+            <li> If the code structure doesn't make sense, implement your own solution and see how it can be modified to the lines in the code structure. For example, suppose there's only one line and the only approach you can think of is using a for loop with a recursive element in the for loop. On your scratch piece of paper, writing out the longer solution and then asking yourself how to constrict a for loop to one line may end up getting you to think of using a list comprehension.</li>
+        </ol>
+    <h2> Sample Problem 1 </h2>
+
+    <img src = "../images/61a_sp22_Q11.jpg" alt = "Spring 2022 Final Question 11" width="1000" height="750">
+
+
+    <h2> Sample Problem 2 </h2>
+    </body>
+
+
+
+
+</html>

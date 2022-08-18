@@ -24,11 +24,10 @@
         </h2>
         <p>
             <ol>
-                <li> Terminology </li>
-                <li> History of Language Models </li>
-                <li> Current RNNs & their Fixings </li>
-                <li> Transformers for NLP </li>
-                <li> Transformers for Images </li>
+                <li> Terminology I've Come Across</li>
+                <li> My Big Picture Understanding of the Field </li>
+                <li> Things I do not Understand</li>
+                <li> Resources </li>
             </ol>
         </p>
 
@@ -43,32 +42,66 @@
             <li> Learned vector representation </li>
             <li> Residual Connection: Connection that factors in Prior Input into Existing Calculations. Due to the inherent nature of gradient descent, having a residual connection allows the gradients to course through a particular input more directly without a bunch of coefficients in the way.  </li>
             <li> Normalization: Standardizes </li>
-            <li> Autoregressive: Predicts future values by relying on past values </li>
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            <!-- <li> </li> -->
-            
+            <li> Autoregressive: Predicts future values by relying on past values </li>      
+            <li> Query, Key, values
+                <p> There are some excellent explanations for these terms including <a href = "https://stats.stackexchange.com/questions/421935/what-exactly-are-keys-queries-and-values-in-attention-mechanisms"> this </a>  and <a href = "https://www.youtube.com/watch?v=OyFJWRnt_AY""> this</a>. Essentially, consider the example of information retrieval systems where you have a query which tries to map to the best results. In order to do so, there are certain descriptors or keys which you test against the query, the best of which will have its value selected and shown at the top of the search results. In the context of transformers, </p>
+            </li>
+        </ol>
+       
+        <h2> What I Understand Regarding Transformers: The Big Picture View</h2>
+            <h3> The Architecture Details of the Original Paper "Attention is All You Need" </h3>
+                <figure> 
+                    <img src = "../images/transformer_model_architecture.PNG" alt = "Transformer Model Architecture(taken from 'Attention is All You Need'"> 
+                    <br>
+                    <figcaption>
+                        <center>
+                            <b> Figure 1: </b>Transformer Model Architecture(taken from "Attention is All You Need")
+                        </center> </figcaption> 
+                </figure>
+                <p> Like RNNs, the transformer model is divided into an encoder and decoder section. The encoder has one set of inputs and the decoder has two sets of inputs(these will be described soon). The set of inputs that the encoder receives is simply the set of inputs that goes into the model(i.e. if you're trying to translate English to French, the inputs into the encoder will be whatever English sentence is fed into the model). Prior to being fed into the encoder, each word in the sentence will be mapped to a vector which represents their relative locations in a high-dimensional space(i.e. the vectors for dog and horse might be relatively similar to one another b/c they are animals). This embedding space/mapping can either be trained or taken from elsewhere. After each word in the sentence is mapped to a vector, they are then added to a positional vector which encapsulates information about the relative location of each word using sine and cosine functions. Then, the encoder takes the resultant vector which represents each word and attempts to spit out new vectors which represent each word's semantic relation(within the sentence as opposed to general meaning like in the embedding stage) to one another. It does this using a combination of multi-headed attention, residual connections, and a feedforward network. </p>
+                <p> The decoder model is a bit more complex. Let's asume that we are doing English to French translation and we have predicted the first French word. We now want to predict the next word. We will again apply and add embedding(except for French) and positional encoding vectors with regards to the French word. We will then put this vector through 2 attention blocks. The first attention block will use a technique called masking(which I do not completely understand yet). The second attention block will take the results of the first attention block along with the results from the encoder and form assosciation vectors between the French and English words. These resultant association vectors will then go through the rest of the model and output a set of probabilities for the possible selections for the next potential word</p>
+                <ol>
+                    <li> Why the feedforward network? </li>
+                    <li> Where do the QKVs come from? </li>
+                    <li> Why is it called multi-headed attention? </li>
+                    The query key and value vectors are split(so for example a 6-dimensional query vector can be split into 2 3-dimensional query vectors-i.e. the top half and bottom half). The self-attention blocks(i.e. Softmax(QK^T/sqrt(d_k))*V)
+                    <li> How do we reference words that are in the French dictionary that are possible options for the next word? How do the output probabilities look like and how do they refer to a word? -> Can only be answered in practice. </li>
+                    <li> I understand that the FFNs are used to make the attention vectors into a more digestible form. Is there any other way of interpreting this function that is less vague?</li>
+                    <li> How does parallelization manifest in the FFNs?</li>
+                    <li> Do the FFNs backprop? </li>
+                    <li>How do the weight matrices for QKV and from attention network to FFNs get generated/trained?</li> 
+                </ol>
+
+                <h2> Resources </h2>
+            <ul>
+                <li> Rise of Transformers & Details of Transformers Architecture
+                    <ul> 
+                        <li> <a href = "https://www.youtube.com/watch?v=OyFJWRnt_AY"> U of Waterloo Lecture: Attention and Transformer Networks </a> </li>
+                        <li> <a href = "https://www.youtube.com/watch?v=4Bdc55j80l8" >The AI Hacker - Illustrated Guide to Transformers Neural Network: A step by step explanation </a></li>
+                        <li> <a href = "https://www.youtube.com/watch?v=TQQlZhbC5ps"> Excellent High-Level Overview of Transformers from TheCodeEmporium </li>
+                        <li> https://github.com/anebz/papers </li>
+                    </ul>
+                </li>
+
+
+
+                
+            </ul>
+        
+        
+
+
+
+
+        <h2> Source Material/Useful Links </h2>
+        <ol>
+            <li> https://aicorespot.io/an-intro-to-transduction-within-machine-learning/</li>
 
         </ol>
-        <h2>
-            History into RNNs
-        </h2>
-        <p>
-            There doesn't appear to be a particular date when RNNs first arrived.
-        </p>
-        
-        <h2> Transformers for NLP: Attention is All You Need </h2>
+    </body>
+</html>
+
+<!-- <h2> Transformers for NLP: Attention is All You Need </h2>
         <p> The authors of this paper include the following: 
             <ol>
                 <li> Ashish Vaswani </li> 
@@ -82,9 +115,10 @@
             </ol>
             <br>
             <br>
-        </p>
-        
-        <h3> Why do Transformers Matter? </h3>
+        </p> -->
+
+
+        <!-- <h3> Why do Transformers Matter? </h3>
         In a nutshell, here are the advantages that transformers provide:
         <ol>
             <li> Does not use convolutions or recurrence - Saves on computational resources </li>
@@ -136,25 +170,4 @@
         </ol>
         
         <br>
-        <br>
-
-
-
-
-        <h2> Things to Do</h2>
-        <ol>
-            <li> Watch https://www.youtube.com/watch?v=4Bdc55j80l8(8:35 onwards), https://www.youtube.com/watch?v=TQQlZhbC5ps, https://www.youtube.com/watch?v=iDulhoQ2pro, https://www.youtube.com/watch?v=j6kuz_NqkG0 </li>
-        </ol>
-        <h2> Questions I Have Yet to Answer </h2>
-        <ol>
-            <li> Why do sine and cosine functions having linearity properties(I'm assuming linear transformation properties) matter? </li>
-            <li> What exactly are embeddings and what do they precisely do?(Examples include word2vec) </li>
-            <li> What is the intuition behind the purpose of the keys, values, and queries </li>
-        </ol>
-        <h2> Source Material/Useful Links </h2>
-        <ol>
-            <li> https://aicorespot.io/an-intro-to-transduction-within-machine-learning/</li>
-
-        </ol>
-    </body>
-</html>
+        <br> -->

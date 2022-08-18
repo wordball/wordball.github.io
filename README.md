@@ -1,1 +1,1 @@
-Personal Website: [wordball.github.io](url)
+Personal Website: [https://wordball.github.io/](url)
